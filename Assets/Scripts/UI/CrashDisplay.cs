@@ -13,7 +13,7 @@ public class CrashDisplay : MonoBehaviour {
     bool interactPressed = false;
     bool canInteract = false;
 
-    float currentTextSpeed = .05f;
+    float currentTextSpeed = .07f;
 
     AudioSource audioSource;
 
@@ -29,7 +29,7 @@ public class CrashDisplay : MonoBehaviour {
         text = panel.GetComponentInChildren<Text>();
         audioSource = GetComponent<AudioSource>();
         text.text = "";
-        StartText("Graphics Driver Failed...\nSimulation Controller Failed...\nAI Unit Controller Failed...\n\nAttemping Automated Reboot...\nAutomated Reboot Failed\n\nWorld Processing at maximum capacity\n\nPress any button to end task...");
+        StartText("Graphics Driver... Failed\nSimulation Controller... Failed\nAI Unit Controller... Failed\n\nAttemping Automated Reboot...\n_____\nAutomated Reboot Failed\n\nWorld Processing at maximum capacity\n\nPress any button to end task...");
     }
 
     // Update is called once per frame
