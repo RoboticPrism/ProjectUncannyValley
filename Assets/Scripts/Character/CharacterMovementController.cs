@@ -6,14 +6,16 @@ public class CharacterMovementController : MonoBehaviour {
 
     public float speed = 40f;
     
-
     bool playerControl = true;
+    bool lookingLeft = false;
+
     Rigidbody rigidBody;
     Animator animator;
 
 	// Use this for initialization
 	void Start () {
         rigidBody = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -38,6 +40,22 @@ public class CharacterMovementController : MonoBehaviour {
             LimitVelocity(rigidBody.velocity.x),
             rigidBody.velocity.y,
             LimitVelocity(rigidBody.velocity.z));
+        // Decide if the player is looking left
+        if (rigidBody.velocity.x > .1f) {
+            transform.localScale = new Vector3(
+                1f,
+                transform.localScale.y,
+                transform.localScale.z);
+        } else if (rigidBody.velocity.x < -.1f)
+        {
+            transform.localScale = new Vector3(
+                -1f,
+                transform.localScale.y,
+                transform.localScale.z);
+        }
+        lookingLeft = rigidBody.velocity.x < 0;
+        // Send info to the animator
+        animator.SetFloat("Speed", rigidBody.velocity.sqrMagnitude);
     }
 
     private float LimitVelocity(float startValue)
