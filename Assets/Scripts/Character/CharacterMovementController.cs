@@ -53,7 +53,9 @@ public class CharacterMovementController : MonoBehaviour {
                 transform.localScale.z);
         }
         // Send info to the animator
-        animator.SetFloat("Speed", rigidBody.velocity.sqrMagnitude);
+        animator.SetFloat("Speed", Mathf.Max(
+            Mathf.Abs(rigidBody.velocity.x),
+            Mathf.Abs(rigidBody.velocity.z)));
     }
 
     private float LimitVelocity(float startValue)
