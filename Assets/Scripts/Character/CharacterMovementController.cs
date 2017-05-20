@@ -7,7 +7,6 @@ public class CharacterMovementController : MonoBehaviour {
     public float speed = 40f;
     
     bool playerControl = true;
-    bool lookingLeft = false;
 
     Rigidbody rigidBody;
     Animator animator;
@@ -53,7 +52,6 @@ public class CharacterMovementController : MonoBehaviour {
                 transform.localScale.y,
                 transform.localScale.z);
         }
-        lookingLeft = rigidBody.velocity.x < 0;
         // Send info to the animator
         animator.SetFloat("Speed", rigidBody.velocity.sqrMagnitude);
     }

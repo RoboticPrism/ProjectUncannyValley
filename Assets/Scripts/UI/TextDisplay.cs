@@ -60,14 +60,13 @@ public class TextDisplay : MonoBehaviour {
     {
         if (text)
         {
-            if (textCoroutine != null)
+            if (textCoroutine == null && !text.IsActive())
             {
-                StopText();
+                text.text = "";
+                OpenTextWindow();
+                canInteract = false;
+                textCoroutine = StartCoroutine("TypeLetters", message);
             }
-            text.text = "";
-            OpenTextWindow();
-            canInteract = false;
-            textCoroutine = StartCoroutine("TypeLetters", message);
         }
     }
 
@@ -108,6 +107,7 @@ public class TextDisplay : MonoBehaviour {
         }
         canInteract = true;
 		audioSource.PlayOneShot (typeReturn);
+        textCoroutine = null;
     }
 
     // Types a single letter of the message

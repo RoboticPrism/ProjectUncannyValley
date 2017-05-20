@@ -6,7 +6,7 @@ public class CharacterInteractController : MonoBehaviour {
 
     public GameObject interactIcon;
     bool interactPressed = false;
-    public TextInteractSpot currentTextInteract;
+    public InteractSpot currentInteract;
 
     // Use this for initialization
     void Start () {
@@ -21,9 +21,9 @@ public class CharacterInteractController : MonoBehaviour {
             // On button down
             if (!interactPressed)
             {
-                if (currentTextInteract)
+                if (currentInteract)
                 {
-                    currentTextInteract.Interact();
+                    currentInteract.Interact();
                 }
             }
             interactPressed = true;
@@ -44,9 +44,9 @@ public class CharacterInteractController : MonoBehaviour {
 
     void OnTriggerStay(Collider other)
     {
-        if (other.GetComponent<TextInteractSpot>())
+        if (other.GetComponent<InteractSpot>())
         {
-            currentTextInteract = other.GetComponent<TextInteractSpot>();
+            currentInteract = other.GetComponent<InteractSpot>();
         }
     }
 
@@ -54,7 +54,7 @@ public class CharacterInteractController : MonoBehaviour {
     {
         if (other.GetComponent<InteractSpot>())
         {
-            currentTextInteract = null;
+            currentInteract = null;
             interactIcon.SetActive(false);
         }
     }
