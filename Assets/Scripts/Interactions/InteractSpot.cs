@@ -13,5 +13,10 @@ public class InteractSpot : MonoBehaviour {
 	void Update () {
 		
 	}
-
+        
+    // The interact event for this
+    public void Interact()
+    {
+        Debug.Log("boooooo");
+    }
 }

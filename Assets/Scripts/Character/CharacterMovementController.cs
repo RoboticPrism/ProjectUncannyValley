@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour {
+public class CharacterMovementController : MonoBehaviour {
 
     public float speed = 40f;
     
@@ -10,7 +10,6 @@ public class CharacterController : MonoBehaviour {
     bool playerControl = true;
     Rigidbody rigidBody;
     Animator animator;
-
 
 	// Use this for initialization
 	void Start () {
@@ -49,14 +48,6 @@ public class CharacterController : MonoBehaviour {
         } else
         {
             return Mathf.Max(startValue, -speed);
-        }
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        if (other.GetComponent<InteractSpot>())
-        {
-
         }
     }
 }

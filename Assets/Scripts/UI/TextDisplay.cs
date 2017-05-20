@@ -6,15 +6,21 @@ using UnityEngine.UI;
 public class TextDisplay : MonoBehaviour {
 
     Text text;
+    GameObject panel;
+
+    Coroutine textCoroutine;
+
     bool interactPressed = false;
     public bool canInteract = false;
+
     float normalTextSpeed = .05f;
     float fastTextSpeed = .01f;
     float currentTextSpeed = .05f;
 
 	// Use this for initialization
 	void Start () {
-        text = GetComponentInChildren<Text>();
+        panel = this.transform.GetChild(0).gameObject;
+        text = panel.GetComponentInChildren<Text>();
 	}
 	
 	// Update is called once per frame
@@ -42,14 +48,18 @@ public class TextDisplay : MonoBehaviour {
 	}
 
     // Opens the text box and starts typing the message
-    void StartText(string message)
+    public void StartText(string message)
     {
         if (text)
         {
+            if (textCoroutine != null)
+            {
+                StopText();
+            }
             text.text = "";
             OpenTextWindow();
             canInteract = false;
-            StartCoroutine("TypeLetters", message);
+            textCoroutine = StartCoroutine("TypeLetters", message);
         }
     }
 
@@ -60,7 +70,10 @@ public class TextDisplay : MonoBehaviour {
         {
             CloseTextWindow();
             canInteract = true;
-            StopCoroutine("TypeLetters");
+            if (textCoroutine != null)
+            {
+                StopCoroutine(textCoroutine);
+            }
             text.text = "";
         }
     }
@@ -68,13 +81,13 @@ public class TextDisplay : MonoBehaviour {
     // Opens the text window
     void OpenTextWindow()
     {
-        this.gameObject.SetActive(true);
+        panel.SetActive(true);
     }
 
     // Puts away and hides the text window
     void CloseTextWindow()
     {
-        this.gameObject.SetActive(false);
+        panel.SetActive(false);
     }
 
     // Type message coroutine
