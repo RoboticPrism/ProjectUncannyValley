@@ -6,7 +6,9 @@ using UnityEngine.Events;
 public class InteractSpot : MonoBehaviour {
 
     public UnityEvent afterInteractActions;
-
+    public UnityEvent afterFirstInteractActions;
+    public UnityEvent afterOtherInteractActions;
+    bool firstInteract = true;
 	// Use this for initialization
 	void Start () {
 		
@@ -20,6 +22,14 @@ public class InteractSpot : MonoBehaviour {
     // The interact event for this
     public void Interact()
     {
+        if (firstInteract)
+        {
+            afterFirstInteractActions.Invoke();
+        } else
+        {
+            afterOtherInteractActions.Invoke();
+        }
         afterInteractActions.Invoke();
+        firstInteract = false;
     }
 }
