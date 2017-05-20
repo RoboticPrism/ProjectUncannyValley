@@ -51,4 +51,12 @@ public class CharacterController : MonoBehaviour {
             return Mathf.Max(startValue, -speed);
         }
     }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.GetComponent<InteractSpot>())
+        {
+
+        }
+    }
 }
