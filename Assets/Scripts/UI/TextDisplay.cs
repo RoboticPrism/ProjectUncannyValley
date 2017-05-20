@@ -17,10 +17,18 @@ public class TextDisplay : MonoBehaviour {
     float fastTextSpeed = .01f;
     float currentTextSpeed = .05f;
 
+	AudioSource audioSource;
+
+	public AudioClip typeClickA;
+	public AudioClip typeClickB;
+	public AudioClip typeSpace;
+	public AudioClip typeReturn;
+
 	// Use this for initialization
 	void Start () {
         panel = this.transform.GetChild(0).gameObject;
         text = panel.GetComponentInChildren<Text>();
+		audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -99,6 +107,7 @@ public class TextDisplay : MonoBehaviour {
             yield return new WaitForSeconds(Random.Range(currentTextSpeed, currentTextSpeed * 3));
         }
         canInteract = true;
+		audioSource.PlayOneShot (typeReturn);
     }
 
     // Types a single letter of the message
@@ -106,5 +115,10 @@ public class TextDisplay : MonoBehaviour {
     {
         // Typewriter click noise here
         text.text += letter;
+		if (letter == ' ') {
+			audioSource.PlayOneShot (typeSpace);
+		} else {
+			audioSource.PlayOneShot (typeClickA);
+		}
     }
 }
