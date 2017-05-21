@@ -57,7 +57,6 @@ public class RefridgeratorAnim : MonoBehaviour {
 
     IEnumerator CloseAnim()
     {
-        Debug.Log(transform.localEulerAngles.y);
         for (float i = transform.localEulerAngles.y ; i > 0; i-= openSpeed)
         {
             
