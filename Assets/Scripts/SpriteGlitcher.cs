@@ -19,12 +19,12 @@ public class SpriteGlitcher : MonoBehaviour {
         {
             if (Random.Range(0f, 1f) > 0.9f)
             {
-                transform.localScale = new Vector3(transform.localScale.x, -1f, transform.localScale.z);
+                transform.localScale = new Vector3(transform.localScale.x, -transform.localScale.y, transform.localScale.z);
                 audioSource.PlayOneShot(glitchNoise);
             }
             else
             {
-                transform.localScale = new Vector3(transform.localScale.x, 1f, transform.localScale.z);
+                transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
         }
 	}

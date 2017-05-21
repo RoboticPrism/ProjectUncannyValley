@@ -31,7 +31,7 @@ public class QuestTracker : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         text.text = "";
         textDisplay = FindObjectOfType<TextDisplay>();
-        if (startText != null)
+        if (startText != "")
         {
             AddQuest(startText);
         }
