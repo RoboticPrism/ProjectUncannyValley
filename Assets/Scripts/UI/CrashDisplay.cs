@@ -29,7 +29,7 @@ public class CrashDisplay : MonoBehaviour {
         text = panel.GetComponentInChildren<Text>();
         audioSource = GetComponent<AudioSource>();
         text.text = "";
-		StartText("> Graphics Driver... Failed\n> Simulation Controller... Failed\n> AI Unit Controller... Failed\n>\n> Attemping Automated Reboot...\n> _____\n> Automated Reboot Failed\n> \n> World Processing at maximum capacity\n>\n>\n>\n> Created as a part of the Gr8 Art Games Jam - Boston\n>\n> David Song ................ 3D Art\n> Michelle Houle ............ Sound Design\n> Ryan Stewart .............. Programming\n> Victoria Barranco ........ 2D Art\n>\n>\n>\n>Press any button to end task...");
+		StartText("> Graphics Driver... Failed\n> Simulation Controller... Failed\n> AI Unit Controller... Failed\n>\n> Attempting Automated Reboot...\n> _____\n> Automated Reboot Failed\n> \n> World Processing at maximum capacity\n>\n>\n>\n> Created as a part of the Gr8 Art Games Jam - Boston\n>\n> David Song ................ 3D Art\n> Michelle Houle ............ Sound Design\n> Ryan Stewart .............. Programming and Project Manager\n> Victoria Barranco ......... 2D Art\n>\n>\n>\n>Press any button to end task...");
     }
 
     // Update is called once per frame
