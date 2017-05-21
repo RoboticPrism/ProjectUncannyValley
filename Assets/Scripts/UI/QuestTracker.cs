@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class QuestTracker : MonoBehaviour {
 
+    public string startText;
+
     Text text;
     GameObject panel;
 
@@ -29,6 +31,10 @@ public class QuestTracker : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         text.text = "";
         textDisplay = FindObjectOfType<TextDisplay>();
+        if (startText != null)
+        {
+            AddQuest(startText);
+        }
     }
 
     // Update is called once per frame

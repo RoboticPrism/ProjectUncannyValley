@@ -6,11 +6,12 @@ using UnityEngine.SceneManagement;
 public class WarpSpot : MonoBehaviour {
 
     public int sceneIndex;
+    TextDisplay textDisplay;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    // Use this for initialization
+    void Start () {
+        textDisplay = FindObjectOfType<TextDisplay>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -20,6 +21,15 @@ public class WarpSpot : MonoBehaviour {
     //Warps the character to a new scene
     public void Warp()
     {
-       SceneManager.LoadScene(sceneIndex);
+        StartCoroutine("TryWarp");
+    }
+
+    IEnumerator TryWarp()
+    {
+        while (textDisplay.isOpen)
+        {
+            yield return null;
+        }
+        SceneManager.LoadScene(sceneIndex);
     }
 }
