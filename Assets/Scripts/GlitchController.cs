@@ -13,11 +13,14 @@ public class GlitchController : MonoBehaviour {
     public float digitalGlitchChance = 0.5f;
     public float digitalGlitchMaxIntensity = 0.2f;
 
+    public AudioClip glitchNoise;
+    AudioSource audioSource;
     // Use this for initialization
     void Start () {
         camera = FindObjectOfType<Camera>();
         ag = camera.GetComponent<Kino.AnalogGlitch>();
         dg = camera.GetComponent<Kino.DigitalGlitch>();
+        audioSource = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -26,6 +29,7 @@ public class GlitchController : MonoBehaviour {
         {
             ag.scanLineJitter = Random.Range(0f, analogGlitchMaxIntensity);
             ag.colorDrift = Random.Range(0f, analogGlitchMaxIntensity);
+            audioSource.PlayOneShot(glitchNoise);
         } else
         {
             ag.scanLineJitter = 0f;
@@ -34,6 +38,7 @@ public class GlitchController : MonoBehaviour {
         if (Random.Range(0f, 1f) < digitalGlitchChance)
         {
             dg.intensity = Random.Range(0f, digitalGlitchMaxIntensity);
+            audioSource.PlayOneShot(glitchNoise);
         } else
         {
             dg.intensity = 0f;

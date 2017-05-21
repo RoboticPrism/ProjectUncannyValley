@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class SpriteGlitcher : MonoBehaviour {
 
+    AudioSource audioSource;
+
+    public AudioClip glitchNoise;
+
 	// Use this for initialization
 	void Start () {
-		
+        audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -16,6 +20,7 @@ public class SpriteGlitcher : MonoBehaviour {
             if (Random.Range(0f, 1f) > 0.9f)
             {
                 transform.localScale = new Vector3(transform.localScale.x, -1f, transform.localScale.z);
+                audioSource.PlayOneShot(glitchNoise);
             }
             else
             {
