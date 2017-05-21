@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 public class WarpSpot : MonoBehaviour {
 
     public int sceneIndex;
-    TextDisplay textDisplay;
+    public TextDisplay textDisplay;
+    public QuestTracker questTracker;
 
     // Use this for initialization
     void Start () {
         textDisplay = FindObjectOfType<TextDisplay>();
+        questTracker = FindObjectOfType<QuestTracker>();
     }
 	
 	// Update is called once per frame
@@ -21,12 +23,17 @@ public class WarpSpot : MonoBehaviour {
     //Warps the character to a new scene
     public void Warp()
     {
-        StartCoroutine("TryWarp");
+        if (!textDisplay.isOpen && questTracker.isOpen)
+        {
+            SceneManager.LoadScene(sceneIndex);
+        }
+        //StopCoroutine("TryWarp");
+        //StartCoroutine("TryWarp");
     }
 
     IEnumerator TryWarp()
     {
-        while (textDisplay.isOpen)
+        while (textDisplay.isOpen || questTracker.isOpen)
         {
             yield return null;
         }

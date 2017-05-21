@@ -9,6 +9,7 @@ public class QuestTracker : MonoBehaviour {
 
     Text text;
     GameObject panel;
+    public bool isOpen = false;
 
     Coroutine textCoroutine;
     
@@ -52,6 +53,7 @@ public class QuestTracker : MonoBehaviour {
             {
                 StopText();
             }
+            isOpen = true;
             text.text += "\n";
             
             textCoroutine = StartCoroutine("TypeLetters", message);
