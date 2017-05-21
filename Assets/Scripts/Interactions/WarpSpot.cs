@@ -27,13 +27,16 @@ public class WarpSpot : MonoBehaviour {
         {
             SceneManager.LoadScene(sceneIndex);
         }
-        //StopCoroutine("TryWarp");
-        //StartCoroutine("TryWarp");
+    }
+
+    public void WarpAsync()
+    {
+        StartCoroutine("TryWarp");
     }
 
     IEnumerator TryWarp()
     {
-        while (textDisplay.isOpen || questTracker.isOpen)
+        while (!(!textDisplay.isOpen && questTracker.isOpen))
         {
             yield return null;
         }
