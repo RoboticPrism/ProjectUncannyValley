@@ -55,6 +55,9 @@ public class CharacterInteractController : MonoBehaviour {
             {
                 interactIcon.SetActive(true);
             }
+        } else if (other.GetComponent<WarpSpot>())
+        {
+            other.GetComponent<WarpSpot>().Warp();
         } else
         {
             interactIcon.SetActive(false);
