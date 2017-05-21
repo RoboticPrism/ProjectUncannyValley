@@ -14,6 +14,8 @@ public class QuestTracker : MonoBehaviour {
 
     AudioSource audioSource;
 
+    TextDisplay textDisplay;
+
     public AudioClip typeClickA;
     public AudioClip typeClickB;
     public AudioClip typeSpace;
@@ -26,7 +28,7 @@ public class QuestTracker : MonoBehaviour {
         text = panel.GetComponentsInChildren<Text>()[1];
         audioSource = GetComponent<AudioSource>();
         text.text = "";
-        //AddQuest("- Item 1: Buy Milk");
+        textDisplay = FindObjectOfType<TextDisplay>();
     }
 
     // Update is called once per frame
@@ -45,7 +47,7 @@ public class QuestTracker : MonoBehaviour {
                 StopText();
             }
             text.text += "\n";
-            OpenTextWindow();
+            
             textCoroutine = StartCoroutine("TypeLetters", message);
         }
     }
@@ -88,6 +90,11 @@ public class QuestTracker : MonoBehaviour {
     // Type message coroutine
     IEnumerator TypeLetters(string message)
     {
+        while (textDisplay.isOpen)
+        {
+            yield return null;
+        }
+        OpenTextWindow();
         for (int i = 0; i < message.Length; i++)
         {
             TypeNextLetter(message[i]);

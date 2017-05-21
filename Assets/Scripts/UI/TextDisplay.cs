@@ -12,9 +12,10 @@ public class TextDisplay : MonoBehaviour {
 
     bool interactPressed = false;
     public bool canInteract = false;
+    public bool isOpen = false;
 
-    float normalTextSpeed = .05f;
-    float fastTextSpeed = .01f;
+    float normalTextSpeed = .01f;
+    float fastTextSpeed = .001f;
     float currentTextSpeed = .05f;
 
 	AudioSource audioSource;
@@ -89,12 +90,14 @@ public class TextDisplay : MonoBehaviour {
     void OpenTextWindow()
     {
         panel.SetActive(true);
+        isOpen = true;
     }
 
     // Puts away and hides the text window
     void CloseTextWindow()
     {
         panel.SetActive(false);
+        isOpen = false;
     }
 
     // Type message coroutine

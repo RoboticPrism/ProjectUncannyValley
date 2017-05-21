@@ -7,10 +7,11 @@ public class CharacterInteractController : MonoBehaviour {
     public GameObject interactIcon;
     bool interactPressed = false;
     public InteractSpot currentInteract;
+    TextDisplay textDisplay;
 
     // Use this for initialization
     void Start () {
-		
+        textDisplay = FindObjectOfType<TextDisplay>();
 	}
 
     // Update is called once per frame
@@ -47,6 +48,16 @@ public class CharacterInteractController : MonoBehaviour {
         if (other.GetComponent<InteractSpot>())
         {
             currentInteract = other.GetComponent<InteractSpot>();
+            if (textDisplay.isOpen)
+            {
+                interactIcon.SetActive(false);
+            } else
+            {
+                interactIcon.SetActive(true);
+            }
+        } else
+        {
+            interactIcon.SetActive(false);
         }
     }
 
